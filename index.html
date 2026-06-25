@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biochar from PKS — SSB Group</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600&family=Kanit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red:       #C0152A;
+    --red-dark:  #8B0E1E;
+    --red-light: #E8314A;
+    --red-faint: #FDF0F2;
+    --red-mid:   #FAD5DA;
+    --gray-900:  #1A1A1A;
+    --gray-700:  #3D3D3D;
+    --gray-500:  #6B6B6B;
+    --gray-300:  #C8C8C8;
+    --gray-100:  #F5F5F5;
+    --white:     #FFFFFF;
+    --amber:     #D4790A;
+    --amber-bg:  #FEF3E2;
+    --teal:      #0A7A5C;
+    --teal-bg:   #E3F5EE;
+    --font-th:   'Sarabun', sans-serif;
+    --font-head: 'Kanit', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-th);
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--gray-700);
+    background: var(--white);
+  }
+
+  /* NAV */
+  nav {
+    background: var(--red-dark);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    height: 58px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-logo {
+    font-family: var(--font-head);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 1px;
+    flex-shrink: 0;
+  }
+  .nav-logo span { color: #FFAAB2; }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    margin-left: auto;
+    list-style: none;
+  }
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, var(--red-dark) 0%, var(--red) 55%, #E03048 100%);
+    padding: 5rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -40px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.07);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.9);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 99px;
+    margin-bottom: 1.25rem;
+  }
+  .hero h1 {
+    font-family: var(--font-head);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: #FFCDD2;
+  }
+  .hero-sub {
+    color: rgba(255,255,255,0.8);
+    font-size: 15px;
+    max-width: 580px;
+    margin-bottom: 2rem;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .hero-stat { text-align: left; }
+  .hero-stat .num {
+    font-family: var(--font-head);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+  }
+  .hero-stat .lbl {
+    font-size: 11px;
+    color: rgba(255,255,255,0.65);
+    margin-top: 2px;
+  }
+  .hero-stat .divider-v {
+    width: 1px;
+    height: 48px;
+    background: rgba(255,255,255,0.2);
+    align-self: center;
+  }
+
+  /* SECTION WRAPPER */
+  .section { padding: 3.5rem 2rem; }
+  .section-inner { max-width: 960px; margin: 0 auto; }
+  .section-alt { background: var(--gray-100); }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.4rem;
+    display: block;
+  }
+  .section-heading {
+    font-family: var(--font-head);
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 0.5rem;
+  }
+  .section-desc {
+    color: var(--gray-500);
+    font-size: 14px;
+    margin-bottom: 2rem;
+    max-width: 540px;
+  }
+
+  /* PROCESS STEPS */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem;
+  }
+  .step-card {
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    border-radius: 12px;
+    padding: 1.25rem 1.25rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow .2s, transform .15s;
+  }
+  .step-card:hover {
+    box-shadow: 0 8px 24px rgba(192,21,42,0.12);
+    transform: translateY(-2px);
+  }
+  .step-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .step-card.s1::before { background: var(--teal); }
+  .step-card.s2::before { background: var(--amber); }
+  .step-card.s3::before { background: #E85D24; }
+  .step-card.s4::before { background: var(--gray-700); }
+
+  .step-num {
+    font-family: var(--font-head);
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .s1 .step-num { color: #C8EEE2; }
+  .s2 .step-num { color: #FDEBD0; }
+  .s3 .step-num { color: #FAD4C5; }
+  .s4 .step-num { color: var(--gray-300); }
+
+  .step-name {
+    font-family: var(--font-head);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 4px;
+  }
+  .step-temp {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 99px;
+    margin-bottom: 0.6rem;
+  }
+  .s1 .step-temp { background: var(--teal-bg); color: var(--teal); }
+  .s2 .step-temp { background: var(--amber-bg); color: var(--amber); }
+  .s3 .step-temp { background: #FEF0EB; color: #993C1D; }
+  .s4 .step-temp { background: var(--gray-100); color: var(--gray-500); }
+  .step-desc-txt { font-size: 13px; color: var(--gray-500); line-height: 1.6; }
+
+  /* BEFORE AFTER */
+  .ba-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 1rem;
+    align-items: center;
+  }
+  .ba-card {
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+  }
+  .ba-card.before { background: var(--teal-bg); }
+  .ba-card.after  { background: var(--red-faint); }
+  .ba-card-title {
+    font-family: var(--font-head);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  .before .ba-card-title { color: var(--teal); }
+  .after  .ba-card-title { color: var(--red); }
+  .ba-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    padding: 5px 0;
+    text-align: left;
+  }
+  .ba-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .before .ba-dot { background: var(--teal); }
+  .after  .ba-dot { background: var(--red); }
+  .ba-arrow {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--red);
+    color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* BENEFITS */
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+  .benefit-card {
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    border-radius: 12px;
+    padding: 1.25rem;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    transition: border-color .2s;
+  }
+  .benefit-card:hover { border-color: var(--red-light); }
+  .benefit-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: var(--red-faint);
+    color: var(--red);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .benefit-title {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--gray-900);
+    margin-bottom: 3px;
+  }
+  .benefit-desc { font-size: 13px; color: var(--gray-500); line-height: 1.5; }
+
+  /* FLOW */
+  .flow-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+  .flow-node {
+    flex-shrink: 0;
+    background: var(--white);
+    border: 1px solid var(--gray-300);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    text-align: center;
+    min-width: 130px;
+    transition: border-color .2s;
+  }
+  .flow-node:hover { border-color: var(--red); }
+  .flow-node.active {
+    background: var(--red);
+    border-color: var(--red);
+    color: var(--white);
+  }
+  .flow-node .fn-top { font-size: 11px; opacity: .65; margin-bottom: 2px; }
+  .flow-node .fn-main { font-family: var(--font-head); font-size: 14px; font-weight: 600; }
+  .flow-arrow-sep {
+    flex-shrink: 0;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--red);
+    font-size: 18px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--gray-900);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    font-size: 12px;
+    padding: 1.5rem 2rem;
+  }
+  footer strong { color: rgba(255,255,255,0.8); }
+
+  @media (max-width: 600px) {
+    .ba-grid { grid-template-columns: 1fr; }
+    .ba-arrow { display: none; }
+    .nav-links { display: none; }
+    .hero h1 { font-size: 1.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">SSB<span> GROUP</span></div>
+  <ul class="nav-links">
+    <li><a href="#boiler">Boiler</a></li>
+    <li><a href="#process">กระบวนการ</a></li>
+    <li><a href="#comparison">เปรียบเทียบ</a></li>
+    <li><a href="#benefits">ประโยชน์</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">🌿 Waste to Value · By-Product Innovation</div>
+    <h1>ไบโอชาร์จาก <em>Palm Kernel Shell</em><br>สู่วัสดุมูลค่าสูง</h1>
+    <p class="hero-sub">SSB Group แปลงเถ้าหลงเหลือจากหม้อไอน้ำให้กลายเป็น Biochar — ลดต้นทุนพลังงาน สร้างรายได้ใหม่ และลดผลกระทบต่อสิ่งแวดล้อม</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="num">PKS</div>
+        <div class="lbl">Palm Kernel Shell</div>
+      </div>
+      <div class="hero-stat">
+        <div class="divider-v"></div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">4</div>
+        <div class="lbl">ขั้นตอนกระบวนการ</div>
+      </div>
+      <div class="hero-stat">
+        <div class="divider-v"></div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">900°C</div>
+        <div class="lbl">อุณหภูมิสูงสุด</div>
+      </div>
+      <div class="hero-stat">
+        <div class="divider-v"></div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">0 waste</div>
+        <div class="lbl">Circular Economy</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FLOW OVERVIEW -->
+<div class="section" style="padding-top:2.5rem; padding-bottom:2rem; background:#FAF0F1;">
+  <div class="section-inner">
+    <div class="flow-row">
+      <div class="flow-node">
+        <div class="fn-top">วัตถุดิบ</div>
+        <div class="fn-main">PKS</div>
+      </div>
+      <div class="flow-arrow-sep">→</div>
+      <div class="flow-node active">
+        <div class="fn-top">อุปกรณ์</div>
+        <div class="fn-main">Boiler</div>
+      </div>
+      <div class="flow-arrow-sep">→</div>
+      <div class="flow-node">
+        <div class="fn-top">ก่อนเผา</div>
+        <div class="fn-main">Combustion</div>
+      </div>
+      <div class="flow-arrow-sep">→</div>
+      <div class="flow-node">
+        <div class="fn-top">หลังเผา</div>
+        <div class="fn-main">Char/Ash</div>
+      </div>
+      <div class="flow-arrow-sep">→</div>
+      <div class="flow-node active">
+        <div class="fn-top">ผลิตภัณฑ์</div>
+        <div class="fn-main">Biochar</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BOILER ILLUSTRATION -->
+<div class="section" id="boiler" style="background:#1A1A1A; padding-top:3rem; padding-bottom:3rem;">
+  <div class="section-inner">
+    <span class="section-label" style="color:#FF8A96;">หม้อไอน้ำ</span>
+    <h2 class="section-heading" style="color:#fff; margin-bottom:0.25rem;">Biomass Boiler — โครงสร้างและการทำงาน</h2>
+    <p class="section-desc" style="color:rgba(255,255,255,0.5); margin-bottom:1.75rem;">PKS ถูกป้อนเข้าหม้อไอน้ำ ความร้อนจากการเผาไหม้ผลิตไอน้ำ (Steam) สำหรับกระบวนการผลิต ขณะที่เถ้าตกค้างถูกรวบรวมเป็น Biochar</p>
+    <div style="overflow-x:auto;">
+      <svg width="100%" viewBox="0 0 880 480" role="img" xmlns="http://www.w3.org/2000/svg">
+        <title>Biomass Boiler Diagram — SSB Group</title>
+        <desc>แผนภาพหม้อไอน้ำ Biomass แสดงการไหลของ PKS เข้าสู่ห้องเผาไหม้ ผลิตไอน้ำขึ้นด้านบน และเถ้า Biochar ออกด้านล่าง</desc>
+        <defs>
+          <linearGradient id="boilerBody" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#4A4A4A"/>
+            <stop offset="100%" stop-color="#2A2A2A"/>
+          </linearGradient>
+          <linearGradient id="fireGrad" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stop-color="#C0152A"/>
+            <stop offset="45%" stop-color="#E85D24"/>
+            <stop offset="100%" stop-color="#FAC75A"/>
+          </linearGradient>
+          <linearGradient id="steamGrad" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stop-color="#93C5FD" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="#BFDBFE" stop-opacity="0.15"/>
+          </linearGradient>
+          <linearGradient id="heatZone" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stop-color="#C0152A" stop-opacity="0.35"/>
+            <stop offset="60%" stop-color="#E85D24" stop-opacity="0.15"/>
+            <stop offset="100%" stop-color="#FAC75A" stop-opacity="0.05"/>
+          </linearGradient>
+          <linearGradient id="waterGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#1E6FA8" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="#1E3A5F" stop-opacity="0.9"/>
+          </linearGradient>
+          <linearGradient id="ashGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#555"/>
+            <stop offset="100%" stop-color="#222"/>
+          </linearGradient>
+          <marker id="arr-w" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+          <marker id="arr-s" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="#93C5FD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+          <marker id="arr-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="#C0152A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+          <marker id="arr-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="#6EE7B7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+          <clipPath id="boilerClip">
+            <rect x="220" y="70" width="300" height="340" rx="14"/>
+          </clipPath>
+        </defs>
+
+        <!-- ===== BOILER SHELL ===== -->
+        <!-- Outer shell shadow -->
+        <rect x="224" y="74" width="300" height="340" rx="14" fill="#000" opacity="0.4"/>
+        <!-- Main body -->
+        <rect x="220" y="70" width="300" height="340" rx="14" fill="url(#boilerBody)" stroke="#666" stroke-width="1.5"/>
+
+        <!-- Water section (lower 40%) -->
+        <rect x="220" y="270" width="300" height="140" rx="0" fill="url(#waterGrad)" clip-path="url(#boilerClip)"/>
+
+        <!-- Heat / fire zone -->
+        <rect x="220" y="240" width="300" height="170" fill="url(#heatZone)" clip-path="url(#boilerClip)"/>
+
+        <!-- Steam space (upper) -->
+        <rect x="220" y="70" width="300" height="200" fill="url(#steamGrad)" clip-path="url(#boilerClip)"/>
+
+        <!-- Water line -->
+        <line x1="222" y1="270" x2="518" y2="270" stroke="#60A5FA" stroke-width="1" stroke-dasharray="6 3" opacity="0.7"/>
+        <text x="530" y="275" font-family="'Sarabun',sans-serif" font-size="11" fill="#60A5FA" opacity="0.8">ระดับน้ำ</text>
+
+        <!-- Boiler tubes (heat exchanger) -->
+        <rect x="255" y="195" width="18" height="80" rx="4" fill="#555" stroke="#777" stroke-width="0.75" opacity="0.85"/>
+        <rect x="290" y="195" width="18" height="80" rx="4" fill="#555" stroke="#777" stroke-width="0.75" opacity="0.85"/>
+        <rect x="325" y="195" width="18" height="80" rx="4" fill="#555" stroke="#777" stroke-width="0.75" opacity="0.85"/>
+        <rect x="360" y="195" width="18" height="80" rx="4" fill="#555" stroke="#777" stroke-width="0.75" opacity="0.85"/>
+        <rect x="395" y="195" width="18" height="80" rx="4" fill="#555" stroke="#777" stroke-width="0.75" opacity="0.85"/>
+        <rect x="430" y="195" width="18" height="80" rx="4" fill="#555" stroke="#777" stroke-width="0.75" opacity="0.85"/>
+        <text x="340" y="192" font-family="'Sarabun',sans-serif" font-size="10" fill="rgba(255,255,255,0.4)" text-anchor="middle">Fire Tubes</text>
+
+        <!-- Combustion chamber grate (bottom) -->
+        <rect x="230" y="375" width="280" height="22" rx="4" fill="#3A3A3A" stroke="#666" stroke-width="0.75"/>
+        <!-- Grate bars -->
+        <line x1="260" y1="375" x2="260" y2="397" stroke="#555" stroke-width="1"/>
+        <line x1="300" y1="375" x2="300" y2="397" stroke="#555" stroke-width="1"/>
+        <line x1="340" y1="375" x2="340" y2="397" stroke="#555" stroke-width="1"/>
+        <line x1="380" y1="375" x2="380" y2="397" stroke="#555" stroke-width="1"/>
+        <line x1="420" y1="375" x2="420" y2="397" stroke="#555" stroke-width="1"/>
+        <line x1="460" y1="375" x2="460" y2="397" stroke="#555" stroke-width="1"/>
+        <text x="370" y="391" font-family="'Sarabun',sans-serif" font-size="10" fill="rgba(255,255,255,0.4)" text-anchor="middle">Grate</text>
+
+        <!-- Flames -->
+        <path d="M265,375 Q272,352 278,362 Q284,342 290,375Z" fill="url(#fireGrad)" opacity="0.9"/>
+        <path d="M305,375 Q313,348 320,358 Q326,336 334,375Z" fill="url(#fireGrad)" opacity="0.85"/>
+        <path d="M350,375 Q357,344 364,355 Q370,332 378,375Z" fill="url(#fireGrad)" opacity="0.9"/>
+        <path d="M392,375 Q399,350 406,360 Q412,340 420,375Z" fill="url(#fireGrad)" opacity="0.85"/>
+        <path d="M432,375 Q438,354 444,363 Q450,344 458,375Z" fill="url(#fireGrad)" opacity="0.9"/>
+
+        <!-- Insulation strip -->
+        <rect x="220" y="70" width="300" height="8" rx="2" fill="#888" opacity="0.5"/>
+        <rect x="220" y="402" width="300" height="8" rx="2" fill="#888" opacity="0.5"/>
+
+        <!-- Top dome -->
+        <ellipse cx="370" cy="70" rx="150" ry="14" fill="#4A4A4A" stroke="#666" stroke-width="1"/>
+
+        <!-- Steam outlet pipe (top center) -->
+        <rect x="350" y="20" width="40" height="52" rx="6" fill="#3A3A3A" stroke="#666" stroke-width="1"/>
+        <rect x="354" y="20" width="32" height="52" rx="4" fill="#2A2A2A"/>
+        <!-- Steam wisps -->
+        <path d="M362,20 Q358,10 364,4 Q368,-2 362,-8" fill="none" stroke="#93C5FD" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+        <path d="M370,18 Q367,8 373,2 Q377,-4 371,-10" fill="none" stroke="#93C5FD" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+        <path d="M378,20 Q376,10 382,4 Q386,-2 380,-8" fill="none" stroke="#93C5FD" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+
+        <!-- Safety valve knob -->
+        <circle cx="220" cy="150" r="10" fill="#555" stroke="#777" stroke-width="1"/>
+        <rect x="206" y="148" width="4" height="4" rx="1" fill="#777"/>
+
+        <!-- Pressure gauge -->
+        <circle cx="520" cy="170" r="16" fill="#2A2A2A" stroke="#888" stroke-width="1.5"/>
+        <circle cx="520" cy="170" r="12" fill="#1A1A1A"/>
+        <line x1="520" y1="170" x2="526" y2="162" stroke="#C0152A" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="520" cy="170" r="2" fill="#666"/>
+        <text x="520" y="194" font-family="'Sarabun',sans-serif" font-size="10" fill="rgba(255,255,255,0.45)" text-anchor="middle">Pressure</text>
+
+        <!-- Boiler legs / support -->
+        <rect x="255" y="408" width="22" height="32" rx="3" fill="#333" stroke="#555" stroke-width="0.75"/>
+        <rect x="463" y="408" width="22" height="32" rx="3" fill="#333" stroke="#555" stroke-width="0.75"/>
+        <rect x="230" y="435" width="280" height="8" rx="3" fill="#2A2A2A" stroke="#555" stroke-width="0.75"/>
+
+        <!-- Ash hopper (bottom) -->
+        <path d="M280,440 L260,465 L480,465 L460,440Z" fill="url(#ashGrad)" stroke="#555" stroke-width="0.75"/>
+        <rect x="330" y="465" width="80" height="12" rx="3" fill="#222" stroke="#555" stroke-width="0.75"/>
+
+        <!-- ===== LABELS / CALLOUTS ===== -->
+        <!-- Left side labels -->
+        <!-- PKS Feed -->
+        <text x="50" y="310" font-family="'Kanit',sans-serif" font-size="13" font-weight="600" fill="#FFAAB2">PKS Feed</text>
+        <text x="50" y="326" font-family="'Sarabun',sans-serif" font-size="11" fill="rgba(255,255,255,0.5)">เชื้อเพลิง Biomass</text>
+        <line x1="140" y1="316" x2="218" y2="380" stroke="#C0152A" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr-r)" fill="none"/>
+
+        <!-- Combustion zone -->
+        <text x="36" y="375" font-family="'Kanit',sans-serif" font-size="12" font-weight="600" fill="#FCA5A5">Combustion</text>
+        <text x="36" y="390" font-family="'Sarabun',sans-serif" font-size="11" fill="rgba(255,255,255,0.5)">ห้องเผาไหม้</text>
+        <line x1="148" y1="382" x2="218" y2="370" stroke="#E85D24" stroke-width="1" stroke-dasharray="4 3" fill="none"/>
+
+        <!-- Water level -->
+        <text x="30" y="255" font-family="'Kanit',sans-serif" font-size="12" font-weight="600" fill="#93C5FD">Feed Water</text>
+        <text x="30" y="270" font-family="'Sarabun',sans-serif" font-size="11" fill="rgba(255,255,255,0.5)">น้ำป้อนหม้อไอน้ำ</text>
+        <line x1="128" y1="260" x2="218" y2="290" stroke="#60A5FA" stroke-width="1" stroke-dasharray="4 3" fill="none"/>
+
+        <!-- Fire tubes -->
+        <text x="30" y="225" font-family="'Kanit',sans-serif" font-size="12" font-weight="600" fill="#FDE68A">Heat Exchange</text>
+        <text x="30" y="240" font-family="'Sarabun',sans-serif" font-size="11" fill="rgba(255,255,255,0.5)">Fire Tubes</text>
+        <line x1="130" y1="232" x2="218" y2="232" stroke="#FDE68A" stroke-width="1" stroke-dasharray="4 3" fill="none"/>
+
+        <!-- Insulation -->
+        <text x="30" y="88" font-family="'Kanit',sans-serif" font-size="12" font-weight="600" fill="rgba(255,255,255,0.6)">Insulation</text>
+        <line x1="100" y1="84" x2="218" y2="75" stroke="#888" stroke-width="1" stroke-dasharray="4 3" fill="none"/>
+
+        <!-- Right side labels -->
+        <!-- Steam outlet -->
+        <text x="550" y="52" font-family="'Kanit',sans-serif" font-size="13" font-weight="600" fill="#93C5FD">Steam Outlet</text>
+        <text x="550" y="68" font-family="'Sarabun',sans-serif" font-size="11" fill="rgba(255,255,255,0.5)">ไอน้ำออก → กระบวนการ</text>
+        <line x1="548" y1="48" x2="394" y2="22" stroke="#93C5FD" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr-s)" fill="none"/>
+
+        <!-- Steam space -->
+        <text x="550" y="140" font-family="'Kanit',sans-serif" font-size="12" font-weight="600" fill="#BFDBFE">Steam Space</text>
+        <text x="550" y="155" font-family="'Sarabun',sans-serif" font-size="11" fill="rgba(255,255,255,0.5)">พื้นที่ไอน้ำ</text>
+        <line x1="548" y1="143" x2="522" y2="143" stroke="#BFDBFE" stroke-width="1" stroke-dasharray="4 3" fill="none"/>
+
+        <!-- Pressure gauge label -->
+        <text x="548" y="178" font-family="'Kanit',sans-serif" font-size="12" font-weight="600" fill="rgba(255,255,255,0.7)">Gauge</text>
+
+        <!-- Grate label -->
+        <text x="548" y="390" font-family="'Kanit',sans-serif" font-size="12" font-weight="600" fill="rgba(255,255,255,0.6)">Grate / ตะแกรง</text>
+        <line x1="546" y1="385" x2="522" y2="385" stroke="#888" stroke-width="1" stroke-dasharray="4 3" fill="none"/>
+
+        <!-- Ash / Biochar label -->
+        <text x="550" y="452" font-family="'Kanit',sans-serif" font-size="13" font-weight="600" fill="#6EE7B7">Biochar / Ash</text>
+        <text x="550" y="468" font-family="'Sarabun',sans-serif" font-size="11" fill="rgba(255,255,255,0.5)">เถ้าหลงเหลือ → ผลิต Biochar</text>
+        <line x1="548" y1="456" x2="462" y2="465" stroke="#6EE7B7" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr-g)" fill="none"/>
+
+        <!-- Title badge -->
+        <rect x="220" y="86" width="160" height="24" rx="4" fill="rgba(192,21,42,0.8)"/>
+        <text x="300" y="102" font-family="'Kanit',sans-serif" font-size="12" font-weight="600" fill="#fff" text-anchor="middle">Biomass Boiler · SSB Group</text>
+
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- PROCESS STEPS -->
+<div class="section" id="process">
+  <div class="section-inner">
+    <span class="section-label">กระบวนการ</span>
+    <h2 class="section-heading">การเผาไหม้ใน Boiler — 4 ขั้นตอน</h2>
+    <p class="section-desc">PKS ผ่านการเปลี่ยนแปลงทางเคมีและฟิสิกส์อย่างต่อเนื่องตั้งแต่ 100°C จนถึง 900°C ก่อนกลายเป็น Biochar</p>
+    <div class="steps">
+      <div class="step-card s1">
+        <div class="step-num">01</div>
+        <div class="step-name">Drying</div>
+        <span class="step-temp">100 – 150 °C</span>
+        <p class="step-desc-txt">ระเหยความชื้นออกจาก PKS เพื่อเตรียมพร้อมสำหรับขั้นตอนถัดไป ประสิทธิภาพการเผาไหม้เพิ่มขึ้นเมื่อความชื้นลดลง</p>
+      </div>
+      <div class="step-card s2">
+        <div class="step-num">02</div>
+        <div class="step-name">Pyrolysis</div>
+        <span class="step-temp">200 – 400 °C</span>
+        <p class="step-desc-txt">การสลายตัวด้วยความร้อนในสภาวะออกซิเจนจำกัด ปล่อยก๊าซ (CO, CH₄) และ Volatile Matter ออกมา</p>
+      </div>
+      <div class="step-card s3">
+        <div class="step-num">03</div>
+        <div class="step-name">Carbonization</div>
+        <span class="step-temp">400 – 600 °C</span>
+        <p class="step-desc-txt">มวลอินทรีย์แปลงเป็น Fixed Carbon ที่เสถียร โครงสร้างพรุนเริ่มก่อตัว ค่า Char Yield สูงสุดในช่วงนี้</p>
+      </div>
+      <div class="step-card s4">
+        <div class="step-num">04</div>
+        <div class="step-name">Fixed Carbon Burnout</div>
+        <span class="step-temp">600 – 900 °C</span>
+        <p class="step-desc-txt">เผาไหม้คาร์บอนคงที่อย่างสมบูรณ์ เกิดเถ้าที่มีพื้นที่ผิวสูง พร้อมนำไปใช้เป็น Biochar</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BEFORE / AFTER -->
+<div class="section section-alt" id="comparison">
+  <div class="section-inner">
+    <span class="section-label">เปรียบเทียบ</span>
+    <h2 class="section-heading">ก่อนและหลังการเผาไหม้</h2>
+    <p class="section-desc">สมบัติของ PKS เปลี่ยนแปลงอย่างมีนัยสำคัญหลังผ่านกระบวนการเผาใน Boiler</p>
+    <div class="ba-grid">
+      <div class="ba-card before">
+        <div class="ba-card-title">⬤ ก่อนเผา — PKS (Palm Kernel Shell)</div>
+        <div class="ba-item"><span class="ba-dot"></span>สีน้ำตาล-ดำตามธรรมชาติ</div>
+        <div class="ba-item"><span class="ba-dot"></span>รูปร่างเป็นเปลือกกะลา</div>
+        <div class="ba-item"><span class="ba-dot"></span>มีความชื้นสูง 10–15%</div>
+        <div class="ba-item"><span class="ba-dot"></span>ค่าความร้อน (HHV) ~18–19 MJ/kg</div>
+        <div class="ba-item"><span class="ba-dot"></span>โครงสร้างเซลลูโลส-ลิกนิน</div>
+      </div>
+      <div class="ba-arrow">→</div>
+      <div class="ba-card after">
+        <div class="ba-card-title">⬤ หลังเผา — Biochar</div>
+        <div class="ba-item"><span class="ba-dot"></span>สีเทาเข้ม-ดำ</div>
+        <div class="ba-item"><span class="ba-dot"></span>โครงสร้างพรุน เบา เปราะ</div>
+        <div class="ba-item"><span class="ba-dot"></span>ความชื้นต่ำมาก (&lt; 5%)</div>
+        <div class="ba-item"><span class="ba-dot"></span>พื้นที่ผิวจำเพาะสูง (BET)</div>
+        <div class="ba-item"><span class="ba-dot"></span>Carbon content &gt; 70%</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BENEFITS -->
+<div class="section" id="benefits">
+  <div class="section-inner">
+    <span class="section-label">ประโยชน์</span>
+    <h2 class="section-heading">มูลค่าของ Biochar จาก PKS</h2>
+    <p class="section-desc">Biochar ที่ได้จากกระบวนการสร้างคุณค่าหลายด้าน ทั้งในมิติสิ่งแวดล้อมและเศรษฐกิจ</p>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon">🌱</div>
+        <div>
+          <div class="benefit-title">ปรับปรุงโครงสร้างดิน</div>
+          <div class="benefit-desc">เพิ่มธาตุอาหาร ปรับสภาพดิน เหมาะสำหรับงานเกษตรกรรม</div>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">💧</div>
+        <div>
+          <div class="benefit-title">กักเก็บน้ำในดิน</div>
+          <div class="benefit-desc">โครงสร้างพรุนช่วยอุ้มน้ำ ลดการสูญเสียน้ำในดินร่วนซุย</div>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🌍</div>
+        <div>
+          <div class="benefit-title">ลด Carbon Footprint</div>
+          <div class="benefit-desc">กักเก็บ CO₂ ในระยะยาว ช่วยลดผลกระทบภาวะโลกร้อน</div>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">♻️</div>
+        <div>
+          <div class="benefit-title">Zero-Waste Production</div>
+          <div class="benefit-desc">ใช้ By-Product จากกระบวนการ ไม่มีของเสียจากการผลิต</div>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">💰</div>
+        <div>
+          <div class="benefit-title">ลดต้นทุนพลังงาน</div>
+          <div class="benefit-desc">นำ PKS มาใช้เป็นเชื้อเพลิง แทนการซื้อพลังงานจากภายนอก</div>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">📈</div>
+        <div>
+          <div class="benefit-title">สร้างรายได้เพิ่ม</div>
+          <div class="benefit-desc">จำหน่าย Biochar เป็นผลิตภัณฑ์ข้างเคียง สร้าง Revenue stream ใหม่</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <strong>SSB Group</strong> · Waste to Value — Reducing Energy Costs with By-Product &nbsp;|&nbsp; Biochar from PKS Innovation
+</footer>
+
+</body>
+</html>
